@@ -12,6 +12,7 @@ const enlaces = [
     "https://whatsapp.com",
     "https://openai.com",
     "https://mozilla.org",
+    "holaaa"
   ];
   
   // Variables de control
