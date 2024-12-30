@@ -64,25 +64,24 @@ let currentIndex = 0;
 const increment = 5; // Cuántos books mostrar por clic
 
 // Referencias al DOM
-const linkList = document.getElementById("link-list");
-const verMasButton = document.getElementById("ver-mas");
+const bookList = document.getElementById("link-list");
+const moreButton = document.getElementById("ver-mas");
 
 // Función para cargar books
-function cargarbooks() {
+function loadBooks() {
   const nextIndex = currentIndex + increment;
-  const booksAMostrar = books.slice(currentIndex, nextIndex);
+  const booksDisplayed = books.slice(currentIndex, nextIndex);
 
   // Itera sobre los libros a mostrar
-  for (let i = 0; i < booksAMostrar.length; i++) {
-    const book = booksAMostrar[i];
+  for (let i = 0; i < booksDisplayed.length; i++) {
+    const book = booksDisplayed[i];
     const tags = book.tags;  // Accede correctamente a los tags
     const li = document.createElement("li");
     const a = document.createElement("a");
     const p = document.createElement("p");
 
-
     // Define el enlace hacia el libro
-    a.href = '/books/' + book.id;
+    a.href = `book.html?id=${book.id}`;
     a.textContent = book.title;
 
     // Descripción corta del libro
@@ -106,7 +105,7 @@ function cargarbooks() {
     li.appendChild(a);
     li.appendChild(p);
     li.appendChild(subUl);
-    linkList.appendChild(li);
+    bookList.appendChild(li);
   }
 
   // Actualizar el índice para la próxima carga
@@ -114,12 +113,12 @@ function cargarbooks() {
 
   // Ocultar el botón si no hay más books por cargar
   if (currentIndex >= books.length) {
-    verMasButton.style.display = "none";
+    moreButton.style.display = "none";
   }
 }
 
 // Evento para el botón "Ver más"
-verMasButton.addEventListener("click", cargarbooks);
+moreButton.addEventListener("click", loadBooks);
 
 // Carga inicial de books
-cargarbooks();
+loadBooks();
