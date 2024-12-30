@@ -3,28 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> BiblioVotes </title>
+  <title>Organizador de Enlaces</title>
   <link rel="stylesheet" href="static/css/styles.css">
+  <style>
+    .link-list {
+      list-style-type: none;
+      padding: 0;
+    }
+    .link-list li {
+      margin: 5px 0;
+    }
+    #ver-mas {
+      margin-top: 10px;
+      cursor: pointer;
+      color: blue;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="head-menu">
-            <img src="" alt="logo BiblioVotes">
-            <a class="user-btn" href="index.html">Inicio</a>
-            <a class="user-btn" href="index.html"> Categorías </a>
-        </div>
-        <div class="head-menu">
-            <input type="text" placeholder="Buscar libro...">
-            <a class="user-btn" href="index.html"> Iniciar sesión </a>
-            <a class="user-btn" href="index.html"> Registrarse </a>
-        </div>
-    </header>
-    <main>
-        <h1> Recomendaciones más populares</h1>
-        <div class="book-list" id="book-list">
-            <!-- Las recomendaciones de libros serán generadas aquí con JavaScript -->
-          </div>
-    </main>
+  <h1>Recomendaciones de libros</h1>
+  <ul class="link-list" id="link-list">
+    <!-- Enlaces dinámicos aquí -->
+  </ul>
   <button id="ver-mas">Ver más</button>
 
   <script src="script.js"></script>

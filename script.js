@@ -1,53 +1,125 @@
-// script.js
-
-// Datos de los libros (puedes ampliarlos con más libros)
-const libros = [
-    { title: "El Gran Gatsby", description: "Un clásico de la literatura estadounidense que explora los temas del amor, el deseo y el fracaso, ambientado en la década de 1920.", tags: ["Clásico", "Literatura Americana", "Drama"] },
-    { title: "Cien Años de Soledad", description: "Una novela de Gabriel García Márquez que combina lo real y lo fantástico en un contexto familiar lleno de magia.", tags: ["Realismo Mágico", "Literatura Latinoamericana", "Ficción"] },
-    { title: "1984", description: "Una distopía escrita por George Orwell sobre un régimen totalitario que controla la vida de todos sus ciudadanos.", tags: ["Futurista", "Distopía", "Política"] },
-    { title: "Orgullo y Prejuicio", description: "Una novela de Jane Austen sobre las relaciones de la clase alta en la Inglaterra del siglo XIX.", tags: ["Romántico", "Clásico", "Feminismo"] },
-    { title: "Matar a un Ruiseñor", description: "Una poderosa novela sobre el racismo y la injusticia en los Estados Unidos, escrita por Harper Lee.", tags: ["Clásico", "Racismo", "Drama"] },
-    { title: "El Hobbit", description: "La historia de Bilbo Bolsón, un hobbit que se embarca en una gran aventura, escrita por J.R.R. Tolkien.", tags: ["Fantasía", "Aventura", "Clásico"] },
-    // Agrega más libros según sea necesario
-  ];
-  
-  // Variables de control
-  let librosMostrados = 0;
-  const cantidadPorCarga = 3; // Cantidad de libros que se muestran con cada clic en "Ver más"
-  
-  // Función para cargar y mostrar los libros
-  function cargarLibros() {
-    const bookList = document.getElementById('book-list');
-    
-    // Mostrar un máximo de 'cantidadPorCarga' libros por clic
-    const librosParaMostrar = libros.slice(librosMostrados, librosMostrados + cantidadPorCarga);
-    librosParaMostrar.forEach(libro => {
-      const libroItem = document.createElement('div');
-      libroItem.classList.add('book-item');
-      
-      libroItem.innerHTML = `
-        <h2 class="book-title">${libro.title}</h2>
-        <p class="book-description">${libro.description}</p>
-        <div class="book-tags">
-          ${libro.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-        </div>
-      `;
-      
-      bookList.appendChild(libroItem);
-    });
-  
-    // Actualizamos el contador de libros mostrados
-    librosMostrados += cantidadPorCarga;
-    
-    // Si no hay más libros para mostrar, ocultamos el botón
-    if (librosMostrados >= libros.length) {
-      document.getElementById('ver-mas').style.display = 'none';
+// Simulación de una lista de enlaces (puedes reemplazarlo con datos reales)
+const books = [
+    {
+        "id": 34,
+        "title": "El pozo de la ascensión",
+        "author": "Brandon Sanderson",
+        "shortDescription": "La segunda entrega de la aclamada serie Nacidos de la bruma",
+        "description": "Durante mil años el Lord Legislador reina con un poder absoluto gracias al terror, a sus poderes y a su inmortalidad. Pero vencer y matar al Lord Legislador fue la parte sencilla. El verdadero desafío será sobrevivir a las consecuencias de su caída.",
+        "votesCount": 12,
+        "createdAt": "2024-12-30T17:55:27.228Z",
+        "updatedAt": "2024-12-30T17:55:27.228Z",
+        "tags": [
+            {
+                "id": 1,
+                "name": "Fantasía",
+                "BookTag": {
+                    "createdAt": "2024-12-30T17:55:27.246Z",
+                    "updatedAt": "2024-12-30T17:55:27.246Z",
+                    "BookId": 34,
+                    "TagId": 1
+                }
+            },
+            {
+              "id": 1,
+              "name": "Ciencia Ficción",
+              "BookTag": {
+                  "createdAt": "2024-12-30T17:55:27.246Z",
+                  "updatedAt": "2024-12-30T17:55:27.246Z",
+                  "BookId": 34,
+                  "TagId": 1
+              }
+          }
+        ],
+        "comments": []
+    },
+    {
+        "id": 35,
+        "title": "El pozo de la ascensión",
+        "author": "Brandon Sanderson",
+        "shortDescription": "La segunda entrega de la aclamada serie Nacidos de la bruma",
+        "description": "Durante mil años el Lord Legislador reina con un poder absoluto gracias al terror, a sus poderes y a su inmortalidad. Pero vencer y matar al Lord Legislador fue la parte sencilla. El verdadero desafío será sobrevivir a las consecuencias de su caída.",
+        "votesCount": 12,
+        "createdAt": "2024-12-30T18:42:27.681Z",
+        "updatedAt": "2024-12-30T18:42:27.681Z",
+        "tags": [
+            {
+                "id": 1,
+                "name": "Fantasía",
+                "BookTag": {
+                    "createdAt": "2024-12-30T18:42:27.742Z",
+                    "updatedAt": "2024-12-30T18:42:27.742Z",
+                    "BookId": 35,
+                    "TagId": 1
+                }
+            }
+        ],
+        "comments": []
     }
+]
+
+
+// Variables de control
+let currentIndex = 0;
+const increment = 5; // Cuántos books mostrar por clic
+
+// Referencias al DOM
+const linkList = document.getElementById("link-list");
+const verMasButton = document.getElementById("ver-mas");
+
+// Función para cargar books
+function cargarbooks() {
+  const nextIndex = currentIndex + increment;
+  const booksAMostrar = books.slice(currentIndex, nextIndex);
+
+  // Itera sobre los libros a mostrar
+  for (let i = 0; i < booksAMostrar.length; i++) {
+    const book = booksAMostrar[i];
+    const tags = book.tags;  // Accede correctamente a los tags
+    const li = document.createElement("li");
+    const a = document.createElement("a");
+    const p = document.createElement("p");
+
+
+    // Define el enlace hacia el libro
+    a.href = '/books/' + book.id;
+    a.textContent = book.title;
+
+    // Descripción corta del libro
+    p.textContent = book.shortDescription;
+    p.classList.add("short-description");
+
+    // Crear un nuevo <ul> dentro de este <li> para los tags
+    const subUl = document.createElement("ul");
+    subUl.classList.add("tags-list");
+    const tagEmoji = document.createElement("li");
+    tagEmoji.textContent = "🏷️";
+    subUl.appendChild(tagEmoji);
+    // Crear elementos <li> dentro de este <ul> para cada tag
+    tags.forEach(tag => {
+      const subLi = document.createElement("li");
+      subLi.textContent = tag.name;
+      subLi.classList.add("tag-item")
+      subUl.appendChild(subLi);
+    });
+    // Agregar los subelementos al <ul>
+    li.appendChild(a);
+    li.appendChild(p);
+    li.appendChild(subUl);
+    linkList.appendChild(li);
   }
-  
-  // Evento del botón "Ver más"
-  document.getElementById('ver-mas').addEventListener('click', cargarLibros);
-  
-  // Cargar los primeros libros al inicio
-  cargarLibros();
-  
+
+  // Actualizar el índice para la próxima carga
+  currentIndex = nextIndex;
+
+  // Ocultar el botón si no hay más books por cargar
+  if (currentIndex >= books.length) {
+    verMasButton.style.display = "none";
+  }
+}
+
+// Evento para el botón "Ver más"
+verMasButton.addEventListener("click", cargarbooks);
+
+// Carga inicial de books
+cargarbooks();
