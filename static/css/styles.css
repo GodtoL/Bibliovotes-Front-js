@@ -9,11 +9,12 @@ body {
 
 header {
 display: flex;
-justify-content: space-between;
+justify-content: center;
 align-items: center;
 padding: 15px 20px;
-background-color: #556B2F; /* Verde musgo */
-color: #FFFFFF; /* Texto blanco */
+background-color: #556B2F; 
+color: #FFFFFF; 
+gap: 1rem;
 }
 
 .head-menu {
@@ -46,6 +47,7 @@ background-color: #8FBC8F; /* Verde suave */
 
 input[type="text"] {
 padding: 8px;
+height: 0.5rem;
 font-size: 14px;
 border: 1px solid #A9A9A9; /* Gris oscuro */
 border-radius: 5px;
@@ -119,4 +121,9 @@ background-color: #556B2F; /* Verde musgo */
 .tag-item{
   background-color: #ff0000;
 
+}
+
+.votes{
+  display: flex;
+  gap: 0.5rem;
 }
