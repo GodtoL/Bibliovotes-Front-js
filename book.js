@@ -25,10 +25,10 @@ const books = [
             "comments": [
                 {
                     "id": 11,
-                    "content": "purete",
+                    "content": "personalmente me gusto mucho porque siempre me gustaron los libros de fantasía",
                     "user": {
                         "id": 3,
-                        "username": "Ara"
+                        "username": "kid"
                     }
                 },
                 {
@@ -41,7 +41,7 @@ const books = [
                 },
                 {
                     "id": 9,
-                    "content": "purete",
+                    "content": "siento que empezó muy bien y iba mejorando a medida que trascurria la historia, espero con ansias leer la segunda parte",
                     "user": {
                         "id": 2,
                         "username": "Tj"

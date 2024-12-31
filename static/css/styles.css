@@ -127,9 +127,3 @@ background-color: #556B2F; /* Verde musgo */
   display: flex;
   gap: 0.5rem;
 }
-
-.comments-list{
-  list-style: none;
-  padding: 0;
-  border: #ff0000;
-}

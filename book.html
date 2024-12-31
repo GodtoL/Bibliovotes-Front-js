@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalle del libro</title>
-    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="stylesheet" href="static/css/styles_book.css">
 </head>
 <body>
     <header>
@@ -21,14 +21,18 @@
             <li><a class="user-btn" href="index.html"> Registrarse </a></li>
         </div>
     </header>
-    <h1 id="book-title"></h1>
-    <h3 id="author-title"></h3>
-    <p id="book-description"></p>
-    <ul id="book-tags"></ul>
-    <input type="text" name="comment-input" id="comment-input" placeholder="¿Qué opinas?">
-    <ul id="comments-list"> 
-        
-    </ul>
-    <script src="book.js"></script>
+    <main>
+        <h1 id="book-title"></h1>
+        <h3 id="author-title"></h3>
+        <p id="book-description" class="book-description"></p>
+        <ul id="book-tags" class="book-tags"></ul>
+        <h3> Comentarios</h3>
+        <input type="text" name="comment-input" id="comment-input" placeholder="¿Qué opinas?">
+        <ul id="comments-list" class="comments-list"> 
+            
+        </ul>
+        <script src="book.js"></script>
+    </main>
+
 </body>
 </html>
