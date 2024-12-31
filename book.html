@@ -11,12 +11,10 @@
         <div class="head-menu">
             <img src="static/images/pngwing.com.png" alt="logo BiblioVotes">
             <input type="text" placeholder="Buscar libro...">
-            <li><a class="user-btn" href="index.html">Inicio</a></li>
-            
+            <li><a class="user-btn" href="index.html">Inicio</a></li>  
             <li><a class="user-btn" href="index.html"> Categorías </a></li>
         </div>
         <div class="head-menu">
-    
             <li><a class="user-btn" href="index.html"> Iniciar sesión </a></li>
             <li><a class="user-btn" href="index.html"> Registrarse </a></li>
         </div>
@@ -25,8 +23,18 @@
         <h1 id="book-title"></h1>
         <h3 id="author-title"></h3>
         <p id="book-description" class="book-description"></p>
+
         <ul id="book-tags" class="book-tags"></ul>
-        <h3> Comentarios</h3>
+        <div class="votes-amount">
+            <button class="vote-button"> Votar</button>
+            <li id="amount-votes" class="amount-votes"></li>
+            <p> votos</p>
+        </div>
+        <div id="comments-amount" class="comments-amount">
+            <h3> Comentarios</h3>
+            <li id="amount-comments" class="amount-comments"></li>
+
+        </div>
         <input type="text" name="comment-input" id="comment-input" placeholder="¿Qué opinas?">
         <ul id="comments-list" class="comments-list"> 
             

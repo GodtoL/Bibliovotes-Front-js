@@ -63,6 +63,8 @@ function loadBookinfo(){
     document.getElementById("book-title").textContent = book.title;
     document.getElementById("author-title").textContent = book.author;
     document.getElementById("book-description").textContent = book.description;
+    document.getElementById("amount-votes").textContent = book.votesCount;
+    document.getElementById("amount-comments").textContent = book.comments.length;
     createTags();
     createComments();
 }
