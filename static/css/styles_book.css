@@ -95,7 +95,11 @@ main {
 }
 
 .book-description{
-    margin-bottom: 0;
+    background-color: #FDF5E6; /* Beige claro */
+    border: 1px solid #E0E0E0; /* Gris claro */
+    border-radius: 5px;
+    padding: 1rem;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .comments-list li {
@@ -144,4 +148,8 @@ main {
 .vote-button:hover {
     background-color: #6B8E23; /* Verde oliva */
     transform: scale(1.05); /* Ligeramente más grande */
+}
+.comment-input{
+    display: flex;
+
 }

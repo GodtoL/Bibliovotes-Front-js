@@ -1,86 +1,60 @@
-// Simulación de una lista de enlaces (puedes reemplazarlo con datos reales)
-const books = [
-  
-    {
-        "id": 35,
-        "title": "El pozo de la ascensión",
-        "author": "Brandon Sanderson",
-        "shortDescription": "La segunda entrega de la aclamada serie Nacidos de la bruma",
-        "description": "Durante mil años el Lord Legislador reina con un poder absoluto gracias al terror, a sus poderes y a su inmortalidad. Pero vencer y matar al Lord Legislador fue la parte sencilla. El verdadero desafío será sobrevivir a las consecuencias de su caída.",
-        "votesCount": 12,
-        "createdAt": "2024-12-30T18:42:27.681Z",
-        "updatedAt": "2024-12-30T18:42:27.681Z",
-        "tags": [
-            {
-                "id": 1,
-                "name": "Fantasía",
-                "BookTag": {
-                    "createdAt": "2024-12-30T18:42:27.742Z",
-                    "updatedAt": "2024-12-30T18:42:27.742Z",
-                    "BookId": 35,
-                    "TagId": 1
-                }
-            }
-        ],
-        "comments": [
-            {
-                "id": 11,
-                "content": "purete",
-                "user": {
-                    "id": 3,
-                    "username": "Ara"
-                }
-            },
-            {
-                "id": 10,
-                "content": "purete",
-                "user": {
-                    "id": 1,
-                    "username": "GodtoL"
-                }
-            },
-            {
-                "id": 9,
-                "content": "purete",
-                "user": {
-                    "id": 2,
-                    "username": "Tj"
-                }
-            }
-        ]
-    }
-
-]
-
+// URL de la API
+const apiURL = 'http://localhost:3001/api/book';
 
 // Variables de control
+let books = []; // Aquí se almacenan los libros
 let currentIndex = 0;
-const increment = 5; // Cuántos books mostrar por clic
+const increment = 5; // Cuántos libros mostrar por clic
 
 // Referencias al DOM
 const bookList = document.getElementById("link-list");
 const moreButton = document.getElementById("ver-mas");
 
-function loadBooks() {
-  const nextIndex = currentIndex + increment;
-  const booksDisplayed = books.slice(currentIndex, nextIndex);
-
-  const fragment = document.createDocumentFragment();
-
-  booksDisplayed.forEach(book => {
-    const bookItem = createBookItem(book);
-    fragment.appendChild(bookItem);
-  });
-
-  bookList.appendChild(fragment);
-  currentIndex = nextIndex;
-
-  if (currentIndex >= books.length) {
-    moreButton.style.display = "none";
+// Realizar la solicitud GET
+async function fetchData(apiURL) {
+  try {
+    const response = await fetch(apiURL);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return await response.json(); // Convertir a JSON
+  } catch (error) {
+    console.error('Error al consultar la API:', error); // Manejar errores
+    throw error;
   }
 }
 
-// Función para cargar books
+// Función para cargar los libros iniciales
+async function loadBooks() {
+  try {
+    if (books.length === 0) {
+      // Solo obtener los datos de la API si no se han cargado antes
+      books = await fetchData(apiURL);
+    }
+
+    // Mostrar un conjunto de libros
+    const nextIndex = currentIndex + increment;
+    const booksDisplayed = books.slice(currentIndex, nextIndex);
+
+    const fragment = document.createDocumentFragment();
+    booksDisplayed.forEach(book => {
+      const bookItem = createBookItem(book);
+      fragment.appendChild(bookItem);
+    });
+
+    bookList.appendChild(fragment);
+    currentIndex = nextIndex;
+
+    // Ocultar el botón si no hay más libros
+    if (currentIndex >= books.length) {
+      moreButton.style.display = "none";
+    }
+  } catch (error) {
+    console.error('Error al cargar los libros:', error);
+  }
+}
+
+// Función para crear la lista de tags
 function createTagList(tags) {
   const subUl = document.createElement("ul");
   subUl.classList.add("tags-list");
@@ -99,6 +73,7 @@ function createTagList(tags) {
   return subUl;
 }
 
+// Función para crear la sección de votos y comentarios
 function createVotesSection(votesCount, allComments) {
   const divVotes = document.createElement("div");
   divVotes.classList.add("votes");
@@ -108,7 +83,7 @@ function createVotesSection(votesCount, allComments) {
   const amountVotes = document.createElement("p");
   amountVotes.textContent = votesCount;
   const comments = document.createElement("p");
-  comments.textContent = "Comentarios";
+  comments.textContent = "Comentarios:";
   const amountComments = document.createElement("p");
   amountComments.textContent = allComments.length;
 
@@ -116,11 +91,11 @@ function createVotesSection(votesCount, allComments) {
   divVotes.appendChild(amountVotes);
   divVotes.appendChild(comments);
   divVotes.appendChild(amountComments);
-  
 
   return divVotes;
 }
 
+// Función para crear un item de libro
 function createBookItem(book) {
   const li = document.createElement("li");
   const a = document.createElement("a");
@@ -140,11 +115,13 @@ function createBookItem(book) {
   li.appendChild(votesSection);
   li.appendChild(tagList);
 
-
   return li;
 }
+
+// Cargar los libros inicialmente
 loadBooks();
+
+// Evento para cargar más libros al hacer clic
 moreButton.addEventListener("click", () => {
-  loadBooks(); 
-  
+  loadBooks();
 });
