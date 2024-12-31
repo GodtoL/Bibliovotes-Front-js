@@ -1,176 +1,55 @@
 // Simulación de una lista de enlaces (puedes reemplazarlo con datos reales)
 const books = [
-    {
-        "id": 1,
-        "title": "El pozo de la ascensión",
-        "author": "Brandon Sanderson",
-        "shortDescription": "La segunda entrega de la aclamada serie Nacidos de la bruma",
-        "description": "Durante mil años el Lord Legislador reina con un poder absoluto gracias al terror, a sus poderes y a su inmortalidad. Pero vencer y matar al Lord Legislador fue la parte sencilla. El verdadero desafío será sobrevivir a las consecuencias de su caída.",
-        "votesCount": 12,
-        "createdAt": "2024-12-30T17:55:27.228Z",
-        "updatedAt": "2024-12-30T17:55:27.228Z",
-        "tags": [
-            {
-                "id": 1,
-                "name": "Fantasía",
-                "BookTag": {
-                    "createdAt": "2024-12-30T17:55:27.246Z",
-                    "updatedAt": "2024-12-30T17:55:27.246Z",
-                    "BookId": 34,
-                    "TagId": 1
-                }
-            },
-            {
-              "id": 1,
-              "name": "Ciencia Ficción",
-              "BookTag": {
-                  "createdAt": "2024-12-30T17:55:27.246Z",
-                  "updatedAt": "2024-12-30T17:55:27.246Z",
-                  "BookId": 34,
-                  "TagId": 1
-              }
-          }
-        ],
-        "comments": ["carcel"]
-    },
-    {
-        "id": 2,
-        "title": "El pozo de la ascensión",
-        "author": "Brandon Sanderson",
-        "shortDescription": "La segunda entrega de la aclamada serie Nacidos de la bruma",
-        "description": "Durante mil años el Lord Legislador reina con un poder absoluto gracias al terror, a sus poderes y a su inmortalidad. Pero vencer y matar al Lord Legislador fue la parte sencilla. El verdadero desafío será sobrevivir a las consecuencias de su caída.",
-        "votesCount": 12,
-        "createdAt": "2024-12-30T18:42:27.681Z",
-        "updatedAt": "2024-12-30T18:42:27.681Z",
-        "tags": [
-            {
-                "id": 1,
-                "name": "Fantasía",
-                "BookTag": {
-                    "createdAt": "2024-12-30T18:42:27.742Z",
-                    "updatedAt": "2024-12-30T18:42:27.742Z",
-                    "BookId": 35,
-                    "TagId": 1
-                }
-            }
-        ],
-        "comments": []
-    },
-    {
-      "id": 3,
-      "title": "El pozo de la ascensión",
-      "author": "Brandon Sanderson",
-      "shortDescription": "La segunda entrega de la aclamada serie Nacidos de la bruma",
-      "description": "Durante mil años el Lord Legislador reina con un poder absoluto gracias al terror, a sus poderes y a su inmortalidad. Pero vencer y matar al Lord Legislador fue la parte sencilla. El verdadero desafío será sobrevivir a las consecuencias de su caída.",
-      "votesCount": 12,
-      "createdAt": "2024-12-30T18:42:27.681Z",
-      "updatedAt": "2024-12-30T18:42:27.681Z",
-      "tags": [
-          {
-              "id": 1,
-              "name": "Fantasía",
-              "BookTag": {
-                  "createdAt": "2024-12-30T18:42:27.742Z",
-                  "updatedAt": "2024-12-30T18:42:27.742Z",
-                  "BookId": 35,
-                  "TagId": 1
-              }
-          }
-      ],
-      "comments": []
-  },
-  {
-    "id": 4,
-    "title": "El pozo de la ascensión",
-    "author": "Brandon Sanderson",
-    "shortDescription": "La segunda entrega de la aclamada serie Nacidos de la bruma",
-    "description": "Durante mil años el Lord Legislador reina con un poder absoluto gracias al terror, a sus poderes y a su inmortalidad. Pero vencer y matar al Lord Legislador fue la parte sencilla. El verdadero desafío será sobrevivir a las consecuencias de su caída.",
-    "votesCount": 12,
-    "createdAt": "2024-12-30T18:42:27.681Z",
-    "updatedAt": "2024-12-30T18:42:27.681Z",
-    "tags": [
+    
         {
-            "id": 1,
-            "name": "Fantasía",
-            "BookTag": {
-                "createdAt": "2024-12-30T18:42:27.742Z",
-                "updatedAt": "2024-12-30T18:42:27.742Z",
-                "BookId": 35,
-                "TagId": 1
-            }
+            "id": 35,
+            "title": "El pozo de la ascensión",
+            "author": "Brandon Sanderson",
+            "shortDescription": "La segunda entrega de la aclamada serie Nacidos de la bruma",
+            "description": "Durante mil años el Lord Legislador reina con un poder absoluto gracias al terror, a sus poderes y a su inmortalidad. Pero vencer y matar al Lord Legislador fue la parte sencilla. El verdadero desafío será sobrevivir a las consecuencias de su caída.",
+            "votesCount": 12,
+            "createdAt": "2024-12-30T18:42:27.681Z",
+            "updatedAt": "2024-12-30T18:42:27.681Z",
+            "tags": [
+                {
+                    "id": 1,
+                    "name": "Fantasía",
+                    "BookTag": {
+                        "createdAt": "2024-12-30T18:42:27.742Z",
+                        "updatedAt": "2024-12-30T18:42:27.742Z",
+                        "BookId": 35,
+                        "TagId": 1
+                    }
+                }
+            ],
+            "comments": [
+                {
+                    "id": 11,
+                    "content": "purete",
+                    "user": {
+                        "id": 3,
+                        "username": "Ara"
+                    }
+                },
+                {
+                    "id": 10,
+                    "content": "purete",
+                    "user": {
+                        "id": 1,
+                        "username": "GodtoL"
+                    }
+                },
+                {
+                    "id": 9,
+                    "content": "purete",
+                    "user": {
+                        "id": 2,
+                        "username": "Tj"
+                    }
+                }
+            ]
         }
-    ],
-    "comments": []
-},
-{
-  "id": 5,
-  "title": "El pozo de la ascensión",
-  "author": "Brandon Sanderson",
-  "shortDescription": "La segunda entrega de la aclamada serie Nacidos de la bruma",
-  "description": "Durante mil años el Lord Legislador reina con un poder absoluto gracias al terror, a sus poderes y a su inmortalidad. Pero vencer y matar al Lord Legislador fue la parte sencilla. El verdadero desafío será sobrevivir a las consecuencias de su caída.",
-  "votesCount": 12,
-  "createdAt": "2024-12-30T18:42:27.681Z",
-  "updatedAt": "2024-12-30T18:42:27.681Z",
-  "tags": [
-      {
-          "id": 1,
-          "name": "Fantasía",
-          "BookTag": {
-              "createdAt": "2024-12-30T18:42:27.742Z",
-              "updatedAt": "2024-12-30T18:42:27.742Z",
-              "BookId": 35,
-              "TagId": 1
-          }
-      }
-  ],
-  "comments": ["me gusto", "fachero"]
-},
-{
-  "id": 6,
-  "title": "El pozo de la ascensión",
-  "author": "Brandon Sanderson",
-  "shortDescription": "La segunda entrega de la aclamada serie Nacidos de la bruma",
-  "description": "Durante mil años el Lord Legislador reina con un poder absoluto gracias al terror, a sus poderes y a su inmortalidad. Pero vencer y matar al Lord Legislador fue la parte sencilla. El verdadero desafío será sobrevivir a las consecuencias de su caída.",
-  "votesCount": 12,
-  "createdAt": "2024-12-30T18:42:27.681Z",
-  "updatedAt": "2024-12-30T18:42:27.681Z",
-  "tags": [
-      {
-          "id": 1,
-          "name": "Fantasía",
-          "BookTag": {
-              "createdAt": "2024-12-30T18:42:27.742Z",
-              "updatedAt": "2024-12-30T18:42:27.742Z",
-              "BookId": 35,
-              "TagId": 1
-          }
-      }
-  ],
-  "comments": []
-},
-{
-  "id": 7,
-  "title": "El pozo de la ascensión",
-  "author": "Brandon Sanderson",
-  "shortDescription": "La segunda entrega de la aclamada serie Nacidos de la bruma",
-  "description": "Durante mil años el Lord Legislador reina con un poder absoluto gracias al terror, a sus poderes y a su inmortalidad. Pero vencer y matar al Lord Legislador fue la parte sencilla. El verdadero desafío será sobrevivir a las consecuencias de su caída.",
-  "votesCount": 12,
-  "createdAt": "2024-12-30T18:42:27.681Z",
-  "updatedAt": "2024-12-30T18:42:27.681Z",
-  "tags": [
-      {
-          "id": 1,
-          "name": "Fantasía",
-          "BookTag": {
-              "createdAt": "2024-12-30T18:42:27.742Z",
-              "updatedAt": "2024-12-30T18:42:27.742Z",
-              "BookId": 35,
-              "TagId": 1
-          }
-      }
-  ],
-  "comments": ["good"]
-},
+    
 ]
 
 // Obtener el parámetro "id" de la URL
@@ -179,12 +58,16 @@ const bookId = parseInt(params.get("id"));
 
 // Buscar el libro correspondiente
 const book = books.find(b => b.id === bookId);
-
-if (book) {
+function loadBookinfo(){
     // Mostrar la información del libro
     document.getElementById("book-title").textContent = book.title;
+    document.getElementById("author-title").textContent = book.author;
     document.getElementById("book-description").textContent = book.description;
+    createTags();
+    createComments();
+}
 
+function createTags(){
     const tagList = document.getElementById("book-tags");
     const liEmote = document.createElement("li");
     liEmote.textContent = "🏷️";
@@ -194,7 +77,25 @@ if (book) {
         const li = document.createElement("li");
         li.textContent = tag.name;
         tagList.appendChild(li);
-    });
-} else {
-    document.getElementById("book-details").textContent = "Libro no encontrado.";
+    }) 
 }
+
+function createComments(){
+    const commentsList = document.getElementById("comments-list");
+    book.comments.forEach(comment =>{
+        const li = document.createElement("li");
+        const p = document.createElement("p");
+        const h3 = document.createElement("h3");
+
+        p.textContent = comment.content;
+        h3.textContent = comment.user.username;
+        
+        li.appendChild(h3);
+        li.appendChild(p);
+        li.appendChild(p);
+        
+        commentsList.appendChild(li);     
+    }
+    )
+}
+loadBookinfo();
