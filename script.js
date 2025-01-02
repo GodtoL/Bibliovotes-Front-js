@@ -131,6 +131,27 @@ document.getElementById('toggle-form-btn').addEventListener('click', function ()
 document.getElementById("book-create-form").addEventListener("submit", handleCreateBook);
 async function handleCreateBook(event){
   event.preventDefault();
+  
+  // Obtener los datoos del formulario
+  const formData = new FormData(event.target);
+  
+  const data = Object.fromEntries(formData.entries());
+
+  try {
+    const response = await fetch(apiURL, 
+      { method : 'POST',
+        headers: {
+          'Content-Type': 'application/json' 
+        },
+        body : JSON.stringify(data)
+      })
+
+    if(!response.ok) throw new error("Error en el envio");
+    window.location.reload();
+
+  } catch (error) {
+    console.log("Error al crear la recomendación");
+  }
 }
 // Cargar los libros inicialmente
 loadBooks();

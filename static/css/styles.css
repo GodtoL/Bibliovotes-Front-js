@@ -132,6 +132,76 @@ background-color: #556B2F; /* Verde musgo */
   display: flex;
   gap: 0.5rem;
 }
+main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.book-create-form {
+  background-color: #f7f9e9; /* Fondo claro y agradable */
+  border: 2px solid #c2d6b3; /* Borde suave */
+  border-radius: 8px; /* Esquinas redondeadas */
+  padding: 20px;
+  max-width: 400px; /* Ancho máximo para centrar el contenido */
+  margin: 20px auto; /* Centrar el formulario */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+  font-family: Arial, sans-serif;
+}
+
+.book-create-form h2 {
+  text-align: center;
+  color: #4c7031; /* Color relacionado con el esquema general */
+  margin-bottom: 20px;
+}
+
+.book-create-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #4c7031;
+}
+
+.book-create-form textarea {
+  width: 100%; 
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #c2d6b3;
+  border-radius: 5px;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+}
+.create-button{
+  width: 20%;
+  background-color: #6B8E23; /* Botón con un color verde agradable */
+  color: #fff; /* Texto blanco */
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.create-button:hover {
+  background-color: #3a5725; /* Color más oscuro al pasar el mouse */
+}
+.book-create-form button {
+  width: 100%;
+  background-color: #6B8E23; /* Botón con un color verde agradable */
+  color: #fff; /* Texto blanco */
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.book-create-form button:hover {
+  background-color: #3a5725; /* Color más oscuro al pasar el mouse */
+}
+
 @media (max-width: 768px) {
   main {
       width: 90%;
