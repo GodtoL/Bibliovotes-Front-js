@@ -4,7 +4,7 @@ const bookId = parseInt(params.get("id"));
 
 // URL de la API
 const apiURL = `http://localhost:3001/api/book/${bookId}`;
-
+const voteButton = document.getElementById("vote-button")
 // Realizar la solicitud GET
 async function fetchData(apiURL) {
   try {
@@ -74,6 +74,13 @@ function createComments(comments) {
     commentsList.appendChild(li);
   });
 }
-
+voteButton.onclick = async function onClickVote(){
+  try{
+    await fetch(apiURL, {method : "PUT"});
+  } catch(error) {
+    console.log("No se voto", error);
+  }
+  
+}
 // Cargar la información al iniciar
 loadBookinfo();
