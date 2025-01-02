@@ -149,7 +149,7 @@ main {
     background-color: #6B8E23; /* Verde oliva */
     transform: scale(1.05); /* Ligeramente más grande */
 }
-.comment-input{
+.comment-input-form{
     display: flex;
 
 }

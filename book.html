@@ -33,12 +33,11 @@
         <div id="comments-amount" class="comments-amount">
             <h3> Comentarios</h3>
             <li id="amount-comments" class="amount-comments"></li>
-
         </div>
-        <div class="comment-input">
-            <input type="text" name="comment-input" id="comment-input" placeholder="¿Qué opinas?">
-            <button class="vote-button"> Comentar</button>
-        </div>
+        <form action="submit" class="comment-input-form" id="comment-input-form">
+            <input type="text" name="content" id="comment-input" placeholder="¿Qué opinas?" required>
+            <button class="vote-button" id=""> Comentar</button>
+        </form>
         <ul id="comments-list" class="comments-list"> 
             
         </ul>

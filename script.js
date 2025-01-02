@@ -118,6 +118,20 @@ function createBookItem(book) {
   return li;
 }
 
+document.getElementById('toggle-form-btn').addEventListener('click', function () {
+  const form = document.getElementById('book-create-form');
+  if (form.style.display === 'none') {
+      form.style.display = 'block';
+      this.textContent = 'Ocultar'; 
+  } else {
+      form.style.display = 'none';
+      this.textContent = 'Agregar recomendación';
+  }
+});
+document.getElementById("book-create-form").addEventListener("submit", handleCreateBook);
+async function handleCreateBook(event){
+  event.preventDefault();
+}
 // Cargar los libros inicialmente
 loadBooks();
 

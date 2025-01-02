@@ -2,9 +2,12 @@
 const params = new URLSearchParams(window.location.search);
 const bookId = parseInt(params.get("id"));
 
-// URL de la API
+// URL de las APIs
 const apiURL = `http://localhost:3001/api/book/${bookId}`;
-const voteButton = document.getElementById("vote-button")
+const commentApiUrl = 'http://localhost:3001/api/comment';
+
+const voteButton = document.getElementById("vote-button");
+const commentButton = document.getElementById("comment-button");
 // Realizar la solicitud GET
 async function fetchData(apiURL) {
   try {
@@ -74,6 +77,8 @@ function createComments(comments) {
     commentsList.appendChild(li);
   });
 }
+
+// Manejar las votaciones
 voteButton.onclick = async function onClickVote(){
   try{
     await fetch(apiURL, {method : "PUT"});
@@ -81,7 +86,34 @@ voteButton.onclick = async function onClickVote(){
   } catch(error) {
     console.log("No se voto", error);
   }
-  
 }
-// Cargar la información al iniciar
+
+// Manejar el flujo de comentar
+document.getElementById("comment-input-form").addEventListener("submit", handleComment);
+async function handleComment(event){
+  event.preventDefault();
+
+  // Obtener los datoos del formulario
+  const formData = new FormData(event.target);
+  
+  formData.append('bookId', bookId);
+  const data = Object.fromEntries(formData.entries());
+
+  try {
+    const response = await fetch(commentApiUrl, 
+      { method : 'POST',
+        headers: {
+          'Content-Type': 'application/json' 
+        },
+        body : JSON.stringify(data)
+      })
+
+    if(!response.ok) throw new error("Error en el envio");
+    window.location.reload();
+
+  } catch (error) {
+    console.log("Error al enviar el comentario");
+  }
+}
+
 loadBookinfo();
