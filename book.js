@@ -65,8 +65,8 @@ function createComments(comments) {
     const p = document.createElement("p");
     const h3 = document.createElement("h3");
 
-    h3.textContent = comment.user.username; // Usuario que hizo el comentario
-    p.textContent = comment.content; // Contenido del comentario
+    h3.textContent = comment.user.username; 
+    p.textContent = comment.content; 
 
     li.appendChild(h3);
     li.appendChild(p);
@@ -77,6 +77,7 @@ function createComments(comments) {
 voteButton.onclick = async function onClickVote(){
   try{
     await fetch(apiURL, {method : "PUT"});
+    window.location.reload();
   } catch(error) {
     console.log("No se voto", error);
   }
