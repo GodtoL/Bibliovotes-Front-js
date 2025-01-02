@@ -129,30 +129,59 @@ document.getElementById('toggle-form-btn').addEventListener('click', function ()
   }
 });
 document.getElementById("book-create-form").addEventListener("submit", handleCreateBook);
-async function handleCreateBook(event){
-  event.preventDefault();
-  
-  // Obtener los datoos del formulario
-  const formData = new FormData(event.target);
-  
-  const data = Object.fromEntries(formData.entries());
+async function handleCreateBook(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const tagId = formData.get("tags");
+
+    // Validar que el usuario haya seleccionado un tag válido
+    if (!tagId) {
+        alert("Por favor, selecciona un tag.");
+        return;
+    }
+
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+        const response = await fetch('http://localhost:3001/api/book', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (!response.ok) throw new Error("Error en el envío");
+        window.location.reload();
+    } catch (error) {
+        console.error("Error al crear el libro:", error);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+  const select = document.getElementById('tags-select');
 
   try {
-    const response = await fetch(apiURL, 
-      { method : 'POST',
-        headers: {
-          'Content-Type': 'application/json' 
-        },
-        body : JSON.stringify(data)
-      })
+      const response = await fetch('http://localhost:3001/api/tag');
+      if (!response.ok) throw new Error(`Error en la solicitud: ${response.statusText}`);
 
-    if(!response.ok) throw new error("Error en el envio");
-    window.location.reload();
+      const tags = await response.json();
 
+      // Agregar dinámicamente las opciones de tags
+      tags.forEach(tag => {
+          const option = document.createElement('option');
+          option.value = tag.id; // ID del tag
+          option.textContent = tag.name; // Nombre del tag
+          select.appendChild(option);
+      });
   } catch (error) {
-    console.log("Error al crear la recomendación");
+      console.error('Error al cargar los tags:', error);
   }
-}
+});
+
+
+
 // Cargar los libros inicialmente
 loadBooks();
 
