@@ -144,7 +144,7 @@ async function handleCreateBook(event) {
     const data = Object.fromEntries(formData.entries());
 
     try {
-        const response = await fetch('http://localhost:3001/api/book', {
+        const response = await fetch(apiURL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const select = document.getElementById('tags-select');
 
   try {
-      const response = await fetch('http://localhost:3001/api/tag');
+      const response = await fetch('https://bibliovotes-production.up.railway.app/api/tag');
       if (!response.ok) throw new Error(`Error en la solicitud: ${response.statusText}`);
 
       const tags = await response.json();
