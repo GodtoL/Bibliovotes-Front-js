@@ -2,9 +2,9 @@
 const apiURL = 'https://bibliovotes-production.up.railway.app/api/book';
 
 // Variables de control
-let books = []; // Aquí se almacenan los libros
+let books = []; 
 let currentIndex = 0;
-const increment = 5; // Cuántos libros mostrar por clic
+const increment = 5; 
 
 // Referencias al DOM
 const bookList = document.getElementById("link-list");
@@ -13,16 +13,19 @@ const moreButton = document.getElementById("ver-mas");
 // Realizar la solicitud GET
 async function fetchData(apiURL) {
   try {
+    console.log(`Consultando la API en: ${apiURL}`);
     const response = await fetch(apiURL);
+    console.log(`Estado de la respuesta: ${response.status}`);
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
-    return await response.json(); // Convertir a JSON
+    return await response.json();
   } catch (error) {
-    console.error('Error al consultar la API:', error); // Manejar errores
+    console.error('Error al consultar la API:', error);
     throw error;
   }
 }
+
 
 // Función para cargar los libros iniciales
 async function loadBooks() {
