@@ -3,8 +3,8 @@ const params = new URLSearchParams(window.location.search);
 const bookId = parseInt(params.get("id"));
 
 // URL de las APIs
-const apiURL = `http://localhost:3001/api/book/${bookId}`;
-const commentApiUrl = 'http://localhost:3001/api/comment';
+const apiURL = `https://bibliovotes-production.up.railway.app/api/book/${bookId}`;
+const commentApiUrl = 'https://bibliovotes-production.up.railway.app/api/comment';
 
 const voteButton = document.getElementById("vote-button");
 const commentButton = document.getElementById("comment-button");

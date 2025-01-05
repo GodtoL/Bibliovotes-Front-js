@@ -1,5 +1,5 @@
 // URL de la API
-const apiURL = 'http://localhost:3001/api/book';
+const apiURL = 'https://bibliovotes-production.up.railway.app/api/book';
 
 // Variables de control
 let books = []; // Aquí se almacenan los libros
