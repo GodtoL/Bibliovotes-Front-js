@@ -94,6 +94,13 @@ font-weight: bold;
 transition: color 0.3s ease;
 }
 
+li{
+  list-style: none;
+}
+.book-list-section{
+  display: flex;
+  gap: 10rem;
+}
 .link-list a:hover {
 color: #556B2F; /* Verde musgo */
 }

@@ -1,10 +1,12 @@
 // URL de la API
 const apiURL = 'https://bibliovotes-production.up.railway.app/api/book';
+const apiTagURL = 'https://bibliovotes-production.up.railway.app/api/tag';
 
 // Variables de control
 let books = []; 
 let currentIndex = 0;
-const increment = 5; 
+const increment = 5;
+let tagsSelectedFilter = [];
 
 // Referencias al DOM
 const bookList = document.getElementById("link-list");
@@ -28,16 +30,28 @@ async function fetchData(apiURL) {
 
 
 // Función para cargar los libros iniciales
-async function loadBooks() {
+async function loadBooks(tags = []) {
   try {
+    // Cargar libros de la API si aún no se ha hecho
     if (books.length === 0) {
-      // Solo obtener los datos de la API si no se han cargado antes
       books = await fetchData(apiURL);
     }
 
-    // Mostrar un conjunto de libros
+    // Filtrar libros si hay tags seleccionados
+    let filteredBooks = [...books]; // Crea una copia de la lista original
+    if (tags.length > 0) {
+      filteredBooks = books.filter(book =>
+        book.tags.some(tag => tags.includes(tag.id))
+      );
+    }
+
+    // Reiniciar índice y contenedor
+    currentIndex = 0;
+    bookList.innerHTML = ""; // Vaciar el contenido actual
+
+    // Mostrar libros en incrementos
     const nextIndex = currentIndex + increment;
-    const booksDisplayed = books.slice(currentIndex, nextIndex);
+    const booksDisplayed = filteredBooks.slice(currentIndex, nextIndex);
 
     const fragment = document.createDocumentFragment();
     booksDisplayed.forEach(book => {
@@ -48,14 +62,18 @@ async function loadBooks() {
     bookList.appendChild(fragment);
     currentIndex = nextIndex;
 
-    // Ocultar el botón si no hay más libros
-    if (currentIndex >= books.length) {
+    // Restablecer el botón "Ver más"
+    if (currentIndex >= filteredBooks.length) {
       moreButton.style.display = "none";
+    } else {
+      moreButton.style.display = "block";
     }
   } catch (error) {
     console.error('Error al cargar los libros:', error);
   }
 }
+
+
 
 // Función para crear la lista de tags
 function createTagList(tags) {
@@ -96,6 +114,60 @@ function createVotesSection(votesCount, allComments) {
   divVotes.appendChild(amountComments);
 
   return divVotes;
+}
+// Referencia al contenedor de tags
+const tagsFilter = document.getElementById("tags-filter");
+
+// Función para cargar y mostrar los tags
+async function loadTags() {
+  try {
+    // Obtener los datos de la API
+    const tags = await fetchData(apiTagURL);
+
+    // Crear fragmento para mejorar el rendimiento
+    const fragment = document.createDocumentFragment();
+
+    tags.forEach(tag => {
+      const tagItem = document.createElement("li");
+      const inputCheck = document.createElement("input");
+      inputCheck.type = "checkbox";
+      inputCheck.id = tag.id;
+      inputCheck.value = tag.name;
+    
+      // Agregar el input al elemento de lista
+      tagItem.appendChild(inputCheck);
+    
+      // Agregar el texto después del input
+      const textNode = document.createTextNode(` ${tag.name}`);
+      tagItem.appendChild(textNode);
+    
+      tagItem.classList.add("tag-filter-item");
+
+      inputCheck.addEventListener("change", () => {
+        if (inputCheck.checked) {
+          // Agrega el tag ID solo si no existe en la lista
+          if (!tagsSelectedFilter.includes(tag.id)) {
+            tagsSelectedFilter.push(tag.id);
+          }
+          loadBooks(tagsSelectedFilter);
+          console.log(`Etiqueta seleccionada: ${tag.name}, la lista de tags es: ${tagsSelectedFilter}`);
+        } else {
+          // Filtra correctamente el tag deseleccionado
+          tagsSelectedFilter = tagsSelectedFilter.filter(selectedTag => selectedTag !== tag.id);
+          loadBooks(tagsSelectedFilter);
+          console.log(`Etiqueta deseleccionada: ${tag.name}, la lista de tags es: ${tagsSelectedFilter}`);
+        }
+    });
+    
+      fragment.appendChild(tagItem);
+    });
+
+
+    // Agregar las etiquetas al contenedor
+    tagsFilter.appendChild(fragment);
+  } catch (error) {
+    console.error('Error al cargar los tags:', error);
+  }
 }
 
 // Función para crear un item de libro
@@ -187,6 +259,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // Cargar los libros inicialmente
 loadBooks();
+loadTags();
 
 // Evento para cargar más libros al hacer clic
 moreButton.addEventListener("click", () => {
